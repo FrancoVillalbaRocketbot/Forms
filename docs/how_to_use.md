@@ -12,7 +12,7 @@ Para realizar el login hacia el Orquestador es necesario lo siguiente: <br>
 ● URL del servidor : Indicar la URL del servidor R.O.C <br>
 ● Seleccionar una opcion: Indicar la opcion que se utilizara para la conexion las cuales pueden ser mediante las credenciales del usuario, API KEY o mediante el archivo noc.ini.
 
-![](imgs/2.png)
+![](imgs/2.png) 
 
 2. Obtener cola de trabajo de Forms <br>
 Este comando obtiene las colas de trabajo que se encuentran en R.O.C <br>
