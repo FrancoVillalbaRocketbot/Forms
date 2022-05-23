@@ -46,7 +46,9 @@ if module == 'Login':
             SetVar(var_, conx) #type: ignore
 
         except:
-            raise Exception("Password o E-mail incorrectos")
+            conx = False
+            SetVar(var_, conx)
+            raise Exception("Password or E-mail incorrect")
 
     elif api_key:
                     
@@ -59,25 +61,29 @@ if module == 'Login':
                             headers=headers)
         configFormObject = ConfigObject(token, orchestrator_service.server, orchestrator_service.user, orchestrator_service.password, api_key, None)
         if res.status_code != 200:
-            raise Exception("El API Key es incorrecto")
+            conx = False
+            SetVar(var_, conx)
+            raise Exception("The API key is incorrect")
         else:
             conx = True
         SetVar(var_, conx)
 
     elif path:
-        try:
-            orchestrator_service = OrchestatorCommon(server=server_, user=username, password=password, ini_path=path, apikey=api_key)
-            if server_ is None:
-                server_ = orchestrator_service.server
-            token = orchestrator_service.get_authorization_token()
-            headers = {'content-type': 'application/x-www-form-urlencoded','Authorization': 'Bearer {token}'.format(token=token)}
-            res = requests.post(server_ + '/api/assets/list',
-                                headers=headers)
-            configFormObject = ConfigObject(token, orchestrator_service.server, orchestrator_service.user, orchestrator_service.password, api_key, None)
+        orchestrator_service = OrchestatorCommon(server=server_, user=username, password=password, ini_path=path, apikey=api_key)
+        if server_ is None:
+            server_ = orchestrator_service.server
+        token = orchestrator_service.get_authorization_token()
+        headers = {'content-type': 'application/x-www-form-urlencoded','Authorization': 'Bearer {token}'.format(token=token)}
+        res = requests.post(server_ + '/api/assets/list',
+                            headers=headers)
+        configFormObject = ConfigObject(token, orchestrator_service.server, orchestrator_service.user, orchestrator_service.password, api_key, None)
+        if res.status_code != 200:
+            conx = False
+            SetVar(var_, conx)
+            raise Exception("The noc.ini path is incorrect or the credentials/apikey set in the file are incorrect")
+        else:
             conx = True
             SetVar(var_, conx)
-        except:
-            raise Exception("La direccion del archivo .ini es incorrecta")
 
 if module == 'GetForm':
     token_ = GetParams('token')
