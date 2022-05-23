@@ -29,12 +29,12 @@ Inicie sesión en NOC utilizando unda de las opciones, API Key, archivo noc.ini 
 Obtiene las colas de trabajo
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Form Token|Form Token|8YWUW8AXAV3UPNKY|
+|Form Token|Token del formulario que se genera al momento de crear el Form.|8YWUW8AXAV3UPNKY|
 |Asignar a variable|Variable donde guardar resultado sin {}|var|
 
 ### Obtener datos de Forms
   
-Obtener datos de formulario de la cola de trabajo
+Con este comando podemos obtener los datos del formulario, los ids creados para los elementos en el Form de R.O.C deben coincidir con el nombre de las variables en Rocketbot, con esto automáticamente se llenarán.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |ID cola de trabajo|ID de la cola de trabajo|1|

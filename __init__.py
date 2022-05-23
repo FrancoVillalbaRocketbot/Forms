@@ -121,8 +121,8 @@ if module == 'GetFormData':
                     SetVar('xperience', res['data']['xperience'])
                 data = json.loads(res['data']['data'])
                 for attr, value in data.items():
-                    if attr == 'file':
-                        value = value.split("/")[-1]
+                    # if attr == 'file':
+                    #     value = value.split("/")[-1]
                     SetVar(attr, value)
         else:
             raise Exception(res.json()['message'])
